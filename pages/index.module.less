@@ -1,0 +1,75 @@
+._local {
+      overflow-y: scroll;
+      
+	:global {
+		.content_wrap {
+			max-width: 540px;
+			width: 100%;
+		}
+
+		.title {
+			margin-bottom: 24px;
+			color: #aaa;
+			letter-spacing: 1.8px;
+			font-weight: 500;
+			font-size: 18px;
+		}
+
+		.upload_wrap {
+			height: 300px;
+			border-radius: 16px;
+			box-shadow: var(--shadow);
+
+			&:hover {
+				.status_wrap {
+					border: 1px solid black;
+				}
+			}
+
+			.uploader {
+				background-color: transparent;
+			}
+
+			.status_wrap {
+				z-index: -1;
+                        border: 1px solid transparent;
+                        border-radius: 16px;
+
+				&.loading {
+					border: 1px solid black;
+				}
+			}
+
+			.file {
+				width: 200px;
+			}
+
+			.icon_upload {
+				margin-bottom: 12px;
+			}
+
+			.desc {
+				letter-spacing: 0.3px;
+				font-size: 12px;
+			}
+
+			.dz-preview {
+				display: none;
+			}
+		}
+
+		.list_wrap {
+			.btn_clear {
+				color: #999;
+				font-size: 12px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 767px) {
+	._local {
+		align-items: flex-start;
+		padding: 24px;
+	}
+}
