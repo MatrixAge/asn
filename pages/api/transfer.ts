@@ -1,6 +1,6 @@
+import parseExcel from '@/utils/parseExcel'
 import parseFile from '@/utils/parseFile'
-import parseXML from '@/utils/parseXML'
-import writeToExcel from '@/utils/writeToExcel'
+import writeToXML from '@/utils/writeToXML'
 
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -11,9 +11,13 @@ export const config = {
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse<any>) => {
-	const xml = await parseFile(req)
-	const { name, pallets } = parseXML(xml)
-	const buffer = await writeToExcel(pallets)
+	const excel = await parseFile(req)
+	const sheet = excel.getWorksheet('Sheet2')
+	const pallets = parseExcel(sheet)
+	const buffer = writeToXML(pallets)
 
-	res.status(200).json({ name, buffer: buffer })
+	res.status(200).json({
+		name: `${new Date().toLocaleDateString()}_${new Date().valueOf()}`,
+		buffer
+	})
 }

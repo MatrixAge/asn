@@ -9,6 +9,7 @@ specifiers:
   '@types/node': 18.0.0
   '@types/react': 18.0.14
   '@types/react-dom': 18.0.5
+  '@types/xml': ^1.0.8
   '@types/xmldom': ^0.1.31
   ahooks: ^3.5.0
   cheerio: 1.0.0-rc.11
@@ -27,6 +28,7 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   typescript: 4.7.4
+  xml: ^1.0.1
   xmldom: ^0.6.0
 
 dependencies:
@@ -42,6 +44,7 @@ dependencies:
   next: 12.1.6_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  xml: 1.0.1
   xmldom: 0.6.0
 
 devDependencies:
@@ -51,6 +54,7 @@ devDependencies:
   '@types/node': 18.0.0
   '@types/react': 18.0.14
   '@types/react-dom': 18.0.5
+  '@types/xml': 1.0.8
   '@types/xmldom': 0.1.31
   eslint: 8.18.0
   eslint-config-next: 12.1.6_ngoqluhis4kr6sqtxgtlos2xtq
@@ -353,6 +357,12 @@ packages:
 
   /@types/sizzle/2.3.3:
     resolution: {integrity: sha512-JYM8x9EGF163bEyhdJBpR2QX1R5naCJHC8ucJylJ3w9/CVBaskdQ8WqBf8MmQrd1kRvp/a4TS8HJ+bxzR7ZJYQ==}
+    dev: true
+
+  /@types/xml/1.0.8:
+    resolution: {integrity: sha512-IptEZBtDwSPayCP8FmbordhAdjdxsif4zH29xTbBRacZeCHFHZp8OxyG1/CrS8AS0MziJUPTGWCTKbYtvHGYPg==}
+    dependencies:
+      '@types/node': 18.0.0
     dev: true
 
   /@types/xmldom/0.1.31:
@@ -2706,6 +2716,10 @@ packages:
 
   /wrappy/1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
+
+  /xml/1.0.1:
+    resolution: {integrity: sha512-huCv9IH9Tcf95zuYCsQraZtWnJvBtLVE0QHMOs8bWyZAFZNDcYjsPq1nEx8jKA9y+Beo9v+7OBPRisQTjinQMw==}
+    dev: false
 
   /xmlchars/2.2.0:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}

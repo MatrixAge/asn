@@ -5,7 +5,7 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 
 import { toArrayBuffer } from '@/utils/toArrayBuffer'
 import { Crosshair } from '@geist-ui/icons'
-import { Note, Spinner } from '@geist-ui/react'
+import { Note, Spinner, useToasts } from '@geist-ui/react'
 
 import styles from './index.module.less'
 
@@ -22,12 +22,13 @@ const Home: NextPage = () => {
 	const [file, setFile] = useState('')
 	const [list, setList] = useState<Array<List>>([])
 	const [loading, setLoading] = useState(false)
+	const [, setToast] = useToasts()
 
 	useEffect(() => {
 		const current_dropzone = new dropzone('#uploader', {
 			url: '/api/transfer',
 			uploadMultiple: false,
-			acceptedFiles: '.xml'
+			acceptedFiles: '.xlsx'
 		})
 
 		uploader.current = current_dropzone
@@ -46,6 +47,13 @@ const Home: NextPage = () => {
 
 	useEffect(() => {
 		uploader.current!.on('success', (file, res: any) => {
+			console.log(res)
+
+			if (!res?.buffer) {
+				return setToast({ type: 'error', text: '下载失败...' })
+			}
+
+			setToast({ text: '下载中...' })
 			download(res)
 
 			setTimeout(() => {
@@ -62,7 +70,7 @@ const Home: NextPage = () => {
 	const download = useMemoizedFn(
 		({ name, buffer }: { name: string; buffer: { data: Buffer } }) => {
 			const blob = new Blob([toArrayBuffer(buffer.data)], {
-				type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+				type: 'text/xml'
 			})
 
 			const file_name = name
@@ -75,6 +83,8 @@ const Home: NextPage = () => {
 			body.appendChild(link)
 			link.click()
 			body.removeChild(link)
+
+			window.URL.revokeObjectURL(link.href)
 		}
 	)
 
@@ -86,7 +96,7 @@ const Home: NextPage = () => {
 			])}
 		>
 			<div className='content_wrap flex flex_column justify_center align_center'>
-				<div className='title'>ASN.xml to Excel</div>
+				<div className='title'>ASN.xlsx to ASN.xml</div>
 				<div className='upload_wrap w_100 relative cursor_point'>
 					<div id='uploader' className='uploader w_100 h_100'></div>
 					<div
@@ -111,7 +121,7 @@ const Home: NextPage = () => {
 								<span className='desc mt_10'>
 									点击或拖拽文件至此处
 								</span>
-								<span className='desc'>以进行转换（*.xml）</span>
+								<span className='desc'>以进行转换（*.xlsx）</span>
 							</Fragment>
 						)}
 					</div>
